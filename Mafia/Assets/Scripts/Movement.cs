@@ -5,7 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     [SerializeField]
-    private float moveSpeed = 5;        // 이동 속도
+    private float moveSpeed = 4;        // 이동 속도
     [SerializeField]
     private float gravity = -9.81f; // 중력 계수
     [SerializeField]
@@ -16,8 +16,8 @@ public class Movement : MonoBehaviour
 
     public float MoveSpeed
     {
-        // 이동속도는 2 ~ 5 사이의 값만 설정 가능
-        set => moveSpeed = Mathf.Clamp(value, 2.0f, 5.0f);
+        // 이동속도는 2 ~ 4 사이의 값만 설정 가능
+        set => moveSpeed = Mathf.Clamp(value, 2.0f, 4.0f);
     }
 
     private void Awake()

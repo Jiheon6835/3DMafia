@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         playerAnimator.OnMovement(x, z);
 
         // 이동 속도 설정 (앞으로 이동할때만 5, 나머지는 2)
-        movement.MoveSpeed = z > 0 ? 5.0f : 2.0f;
+        movement.MoveSpeed = z > 0 ? 4.0f : 2.0f;
 
         // 이동 함수 호출 (카메라가 보고있는 방향을 기준으로 방향키에 따라 이동)
         movement.MoveTo(cameraTransform.rotation * new Vector3(x, 0, z));
