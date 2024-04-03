@@ -2,20 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class TPCameraController : MonoBehaviour
 {
     [SerializeField]
     private Transform target; // 카메라가 추적하는 대상
     [SerializeField]
-    private float minDistance = 30; // 카메라와 target의 최소 거리
+    private float minDistance = 1; // 카메라와 target의 최소 거리
     [SerializeField]
-    private float maxDistance = 50; // 카메라와 target의 최대 거리
+    private float maxDistance = 5; // 카메라와 target의 최대 거리
     [SerializeField]
-    private float wheelSpeed = 5000; // 마우스 휠 스크롤 속도
+    private float wheelSpeed = 500; // 마우스 휠 스크롤 속도
+    private float rotateSpeedX = 3;
+    private float rotateSpeedY = 5;
+    /*
     [SerializeField]
-    private float xMoveSpeed = 5000; // 카메라의 y축 회전 속도
+    private float xMoveSpeed = 500; // 카메라의 y축 회전 속도
     [SerializeField]
-    private float yMoveSpeed = 2500; // 카메라의 x축 회전 속도
+    private float yMoveSpeed = 250; // 카메라의 x축 회전 속도
+    */
     private float yMinLimit = 5; // 카메라 x축 회전 제한 최소 값
     private float yMaxLimit = 80; // 카메라 y축 회전 제한 최대 값
     private float x, y; // 마우스 이동 방향 값
@@ -35,16 +39,14 @@ public class CameraController : MonoBehaviour
     {
         if (target == null) return; // target이 존재하지 않으면 실행하지 않는다.
 
-        // 오른쪽 마우스를 누르고 있을 때
-        if (Input.GetMouseButton(1))
-        {
-            // 마우스의 x, y축 움직임 방향 정보
-            x += Input.GetAxis("Mouse X") * xMoveSpeed * Time.deltaTime;
-            y -= Input.GetAxis("Mouse Y") * yMoveSpeed * Time.deltaTime;
-            // 오브젝트의 위/아래(x축) 한계 범위 설정
-            y = ClampAngle(y, yMinLimit, yMaxLimit);
-            transform.rotation = Quaternion.Euler(y, x, 0);
-        }
+        // 마우스의 x, y축 움직임 방향 정보
+        // x += Input.GetAxis("Mouse X") * xMoveSpeed * Time.deltaTime;
+        // y -= Input.GetAxis("Mouse Y") * yMoveSpeed * Time.deltaTime;
+        x += Input.GetAxis("Mouse X") * rotateSpeedX;
+        y -= Input.GetAxis("Mouse Y") * rotateSpeedY;
+        // 오브젝트의 위/아래(x축) 한계 범위 설정
+        y = ClampAngle(y, yMinLimit, yMaxLimit);
+        transform.rotation = Quaternion.Euler(y, x, 0);
 
         // 마우스 휠 스크롤을 이용해 target과 카메라의 거리 값(distance) 조절
         distance -= Input.GetAxis("Mouse ScrollWheel") * wheelSpeed * Time.deltaTime;

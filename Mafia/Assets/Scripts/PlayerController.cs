@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Transform cameraTransform;
     [SerializeField]
-    private POVCameraController cameraController;
+    private FPCameraController cameraController;
     private Movement movement;
     //private PlayerAnimator playerAnimator;
 
@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
 
         movement = GetComponent<Movement>();
         //playerAnimator = GetComponentInChildren<PlayerAnimator>();
+        cameraController = GetComponentInChildren<FPCameraController>();
     }
 
     private void Update()
