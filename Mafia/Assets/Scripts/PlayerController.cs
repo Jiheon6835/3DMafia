@@ -15,8 +15,8 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        Cursor.visible = false;                 // 마우스 커서를 보이지 않게
-        Cursor.lockState = CursorLockMode.Locked;   // 마우스 커서 위치 고정
+        //Cursor.visible = false;                 // 마우스 커서를 보이지 않게
+        //Cursor.lockState = CursorLockMode.Locked;   // 마우스 커서 위치 고정
 
         movement = GetComponent<Movement>();
         //playerAnimator = GetComponentInChildren<PlayerAnimator>();
