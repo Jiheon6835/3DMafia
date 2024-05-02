@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private FPCameraController cameraController;
     private Movement movement;
-    //private PlayerAnimator playerAnimator;
+    private PlayerAnimator playerAnimator;
 
     private void Awake()
     {
@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;   // 마우스 커서 위치 고정
 
         movement = GetComponent<Movement>();
-        //playerAnimator = GetComponentInChildren<PlayerAnimator>();
+        playerAnimator = GetComponentInChildren<PlayerAnimator>();
         cameraController = GetComponentInChildren<FPCameraController>();
     }
 
@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
         float z = Input.GetAxis("Vertical");
 
         // 애니메이션 파라미터 설정 (horizontal, vertical)
-        //playerAnimator.OnMovement(x, z);
+        playerAnimator.OnMovement(x, z);
         // 이동 속도 설정 (앞으로 이동할때만 5, 나머지는 2)
         movement.MoveSpeed = z > 0 ? 5.0f : 2.0f;
         // 이동 함수 호출 (카메라가 보고있는 방향을 기준으로 방향키에 따라 이동)
